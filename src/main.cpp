@@ -1,6 +1,5 @@
-#include <string>
 #include <iostream>
-
+#include <string>
 #include <random>
 
 #if defined(_WIN32)
@@ -13,16 +12,16 @@ namespace gtn
 	{
 		msg += "\n";
 		std::cout << msg;
+
 #if defined(_WIN32)
 		OutputDebugStringA(msg.c_str());
 #endif
+
 	}
 
 
 	int random_in_range(int lo, int hi)
 	{
-		//std::uniform_real_distribution  // For floats and doubles.
-		//static auto engine = std::default_random_engine{};
 		static auto engine = std::default_random_engine{ std::random_device{}() };
 		auto distribution = std::uniform_int_distribution<int>{ lo, hi };
 		return distribution(engine);
@@ -50,22 +49,41 @@ namespace gtn
 			}
 		}
 	}
+
+	void check_user_value(const int generatedValue, int userValue)
+	{
+		// TODO: Check the users number based on the random number.
+	}
+
+	// TODO: Create a score counter.
 }
 
 int main()
 {
 	using namespace gtn;
 
-	for (int i = 0; i < 10; ++i)
+	print_log("wecome to... The Guessing Game \nIf you would like to Quite, please enter -1.\n");
+
+	while (true)
+	{
+		int _user_num = user_input("Please enter a number between 0 and 10");
+
+		if (_user_num < 0)
+		{
+			print_log("\n\nYou are not exiting the game.\nThank you for Playing.\n");
+			return false;
+		}
+
+		int const _rand_val = random_in_range(0, 10);
+
+		check_user_value(_rand_val, _user_num);
+
+	}
+
+
+	/*for (int i = 0; i < 10; ++i)
 	{
 		int const rand_val = random_in_range(0, 10);
 		print_log(std::to_string(rand_val));
-	}
-
-	int user_num = user_input("Please enter a number");
-
-	std::string msg = "User Input: ";
-	msg += std::to_string(user_num);
-
-	print_log(msg);
+	}*/
 }
