@@ -39,13 +39,16 @@ namespace gtn
 			std::getline(std::cin, input); // Delimit - Input limit.
 
 			try
-			{
+			{				
 				ret = std::stoi(input);
-				return ret;
+				if (ret <= 10)
+					return ret;
+
+				print_log("The value you entered was greater than 10, Please try again.\n");
 			}
 			catch (const std::exception&)
 			{
-				print_log("The value input is not an interger, Please try again with whole numbers");				
+				print_log("The value input is not an interger, Please try again with whole numbers\n");				
 			}
 		}
 	}
