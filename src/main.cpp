@@ -50,17 +50,43 @@ namespace gtn
 		}
 	}
 
-	void check_user_value(const int generatedValue, int userValue)
+	std::string check_user_value(const int generatedValue, const int userValue, int& score)
 	{
-		// TODO: Check the users number based on the random number.
-	}
+		std::string msg{};
 
-	// TODO: Create a score counter.
+		// TODO: Check the users number based on the random number.
+		if (userValue == generatedValue)
+		{
+			msg = "Congradulations, You have guessed correctly\n";
+			++score;
+			return msg;
+		}
+
+		if (userValue < generatedValue)
+		{
+			
+			msg = "ohh, You have guessed incorrectly. You guess was to low.\n";
+			msg += "Generated: " + std::to_string(generatedValue) + "Your Guess: " + std::to_string(userValue) + "\n\n";
+			return msg;
+		}
+
+		if (userValue > generatedValue)
+		{
+
+			msg = "ohh, You have guessed incorrectly. You guess was to high.\n";
+			msg += "Generated: " + std::to_string(generatedValue) + "Your Guess: " + std::to_string(userValue) + "\n\n";
+			return msg;
+		}
+
+	}
 }
 
 int main()
 {
 	using namespace gtn;
+
+	int score{};
+	std::string msg{};
 
 	print_log("wecome to... The Guessing Game \nIf you would like to Quite, please enter -1.\n");
 
@@ -70,20 +96,15 @@ int main()
 
 		if (_user_num < 0)
 		{
-			print_log("\n\nYou are not exiting the game.\nThank you for Playing.\n");
+			msg = "\n\nYou are not exiting the game.\nThank you for Playing.\n\n Your score was: " + std::to_string(score);
+			print_log(msg);
 			return false;
 		}
 
 		int const _rand_val = random_in_range(0, 10);
 
-		check_user_value(_rand_val, _user_num);
+		msg = check_user_value(_rand_val, _user_num, score);
 
+		print_log(msg);
 	}
-
-
-	/*for (int i = 0; i < 10; ++i)
-	{
-		int const rand_val = random_in_range(0, 10);
-		print_log(std::to_string(rand_val));
-	}*/
 }
