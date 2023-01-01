@@ -58,6 +58,7 @@ namespace gtn
 		if (userValue == generatedValue)
 		{
 			msg = "Congradulations, You have guessed correctly\n";
+			msg += "Generated: " + std::to_string(generatedValue) + " Your Guess: " + std::to_string(userValue) + "\n\n";
 			++score;
 			return msg;
 		}
@@ -66,7 +67,7 @@ namespace gtn
 		{
 			
 			msg = "ohh, You have guessed incorrectly. You guess was to low.\n";
-			msg += "Generated: " + std::to_string(generatedValue) + "Your Guess: " + std::to_string(userValue) + "\n\n";
+			msg += "Generated: " + std::to_string(generatedValue) + " Your Guess: " + std::to_string(userValue) + "\n\n";
 			return msg;
 		}
 
@@ -74,7 +75,7 @@ namespace gtn
 		{
 
 			msg = "ohh, You have guessed incorrectly. You guess was to high.\n";
-			msg += "Generated: " + std::to_string(generatedValue) + "Your Guess: " + std::to_string(userValue) + "\n\n";
+			msg += "Generated: " + std::to_string(generatedValue) + " Your Guess: " + std::to_string(userValue) + "\n\n";
 			return msg;
 		}
 
@@ -96,7 +97,8 @@ int main()
 
 		if (_user_num < 0)
 		{
-			msg = "\n\nYou are not exiting the game.\nThank you for Playing.\n\n Your score was: " + std::to_string(score);
+			msg = "\n\n--------------------------------------\n--------------------------------------";
+			msg += "\n\nYou are not exiting the game.\nThank you for Playing.\n\nYour score was: " + std::to_string(score) + "\n";
 			print_log(msg);
 			return false;
 		}
@@ -104,6 +106,7 @@ int main()
 		int const _rand_val = random_in_range(0, 10);
 
 		msg = check_user_value(_rand_val, _user_num, score);
+		msg += "--------------------------------------";
 
 		print_log(msg);
 	}
