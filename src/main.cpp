@@ -103,7 +103,7 @@ int main()
 			msg = "\n\n--------------------------------------\n--------------------------------------";
 			msg += "\n\nYou are now exiting the game.\nThank you for Playing.\n\nYour score was: " + std::to_string(score) + "\n";
 			print_log(msg);
-			return false;
+			return 0;
 		}
 
 		int const _rand_val = random_in_range(0, 10);
