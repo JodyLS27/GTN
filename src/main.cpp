@@ -98,7 +98,7 @@ int main()
 		if (_user_num < 0)
 		{
 			msg = "\n\n--------------------------------------\n--------------------------------------";
-			msg += "\n\nYou are not exiting the game.\nThank you for Playing.\n\nYour score was: " + std::to_string(score) + "\n";
+			msg += "\n\nYou are now exiting the game.\nThank you for Playing.\n\nYour score was: " + std::to_string(score) + "\n";
 			print_log(msg);
 			return false;
 		}
